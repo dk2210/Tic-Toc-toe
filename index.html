@@ -124,6 +124,8 @@
         @media (min-width:320px) and (max-width:767px) {
             #container{
                 width:85%;
+                margin: 80px 4px;
+                padding: 10px;
             }
             #screen {
                 font-size: 5px;
@@ -205,25 +207,25 @@
             image.className="image";
             image.addEventListener("click",(reply)=>{
                 // console.log('Index:',i,ind)
-                if(cardValue=="null" ||  cardValue=="zero"){
+                if(ele[ind].name === '' && (cardValue=="null" ||  cardValue=="zero")){
                     image.src=`${sign[1].cross}`;
                     cardValue="cross";
                     ele[ind].name = 'cross'
-                }else if( cardValue=="cross"){
+                    count++;
+                }else if(ele[ind].name === '' && cardValue=="cross"){
                     image.src = `${sign[0].zero}`;
                     ele[ind].name = 'zero'
                     cardValue="zero";
-                } 
+                    count++;
+                }
                 reply = checkWinner()
                 console.log("Final Answer is : ",reply);
                 if(reply!=undefined) {
                     setTimeout(()=>{
                         setNewModel(reply);
-                        // mainDiv.style.backgroundImage='url`${https://media.tenor.com/pJatGz_liCsAAAAC/congrats-congratulations.gif})'
                     },500)
-                }else{
-                    count++;
                 }
+
                 if(count==9){
                     setTimeout(()=>{
                         setDraw();
